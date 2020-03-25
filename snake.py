@@ -31,7 +31,7 @@ def leader(screen):
         sk.append(sc)
     sk.sort(key=lambda x: x[1])
     for i in range(len(lis)):
-        screen.addstr(3+i, 3, sk[i][0])
+        screen.addstr(3+i, 3, sk[i][0].upper())
         screen.addstr(3+i, 30, sk[i][1])
         screen.refresh()
     print(sk)
@@ -59,15 +59,16 @@ def player(screen, h, w):
 
 def disp_score(screen, score):
     screen.addstr(1, 1, "SCORE :"+str(score))
+    screen.refresh()
 
 
 def snake(screen, name):
     score = 0
-    disp_score(screen, score)
     h, w = screen.getmaxyx()
     curses.curs_set(0)
     screen.clear()
     screen.nodelay(1)
+    disp_score(screen, score)
     screen.timeout(300)
     box = [[2, 2], [h-2, w-2]]
     textpad.rectangle(screen, box[0][0], box[0][1], box[1][0], box[1][1])
